@@ -1,0 +1,2 @@
+Test-Command: trufflehog -h
+Restrictions: superficial, allow-stderr
