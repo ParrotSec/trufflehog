@@ -1,0 +1,15 @@
+Description: Remove go toolchain from go.mod
+Author: Lorenzo "Palinuro" Faletra <palinuro@parrotsec.org>
+Last-Update: 2025-11-23
+
+--- trufflehog-3.90.11.orig/go.mod
++++ trufflehog-3.90.11/go.mod
+@@ -2,8 +2,6 @@ module github.com/trufflesecurity/truffl
+ 
+ go 1.24
+ 
+-toolchain go1.24.5
+-
+ replace github.com/jpillora/overseer => github.com/trufflesecurity/overseer v1.2.8
+ 
+ // Coinbase archived this library and it has some vulnerable dependencies so we've forked.

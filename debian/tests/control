@@ -1,2 +1,2 @@
-Test-Command: trufflehog -h
+Test-Command: trufflehog --help
 Restrictions: superficial, allow-stderr

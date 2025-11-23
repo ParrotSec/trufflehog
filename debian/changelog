@@ -1,8 +1,37 @@
-trufflehog (2.2.1-0parrot1) lory; urgency=medium
+trufflehog (3.90.11-0parrot1) echo; urgency=medium
 
-  * Rebuild for Parrot 6.0.
+  * Import Kali tool.
+  * Fix go toolchain.
 
- -- Lorenzo "Palinuro" Faletra <palinuro@parrotsec.org>  Fri, 08 Sep 2023 17:33:15 +0200
+ -- Lorenzo "Palinuro" Faletra <palinuro@parrotsec.org>  Sun, 23 Nov 2025 23:15:09 +0100
+
+trufflehog (3.90.11-0kali1) kali-dev; urgency=medium
+
+  * New upstream version 3.90.11
+  * Refresh patch
+  * Update debian/vendor
+  * Fix the build for the new upstream release
+  * Update my email
+
+ -- Sophie Brun <sophie@kali.org>  Thu, 23 Oct 2025 16:05:34 +0200
+
+trufflehog (3.57.0-0kali1) kali-dev; urgency=medium
+
+  [ Ben Wilson ]
+  * Remove template comment and switch spaces to tabs
+
+  [ Kali Janitor ]
+  * Set upstream metadata fields: Bug-Database, Bug-Submit.
+  * Update standards version to 4.6.1, no changes needed.
+  * Set upstream metadata fields: Repository-Browse.
+  * Set upstream metadata fields: Repository.
+  * Update standards version to 4.6.2, no changes needed.
+
+  [ Sophie Brun ]
+  * Update debian/watch
+  * New upstream version 3.57.0
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 29 Sep 2023 13:58:33 +0200
 
 trufflehog (2.2.1-0kali1) kali-dev; urgency=medium
 

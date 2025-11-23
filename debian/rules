@@ -1,8 +1,41 @@
 #!/usr/bin/make -f
 
-#export DH_VERBOSE = 1
+# output every command that modifies files on the build system.
+export DH_VERBOSE = 1
 
-export PYBUILD_NAME=trufflehog
+export GOCACHE = $(CURDIR)/_build
+export GOPATH = $(CURDIR)/_build
+export GOPROXY=off
 
 %:
-	dh $@ --with python3 --buildsystem=pybuild
+	dh $@ --with=golang --buildsystem=golang --builddirectory=_build
+
+execute_after_dh_auto_configure:
+	cp -av debian/vendor _build/src/github.com/trufflesecurity/trufflehog
+	# copy non *.go files in _build
+	cp pkg/analyzer/analyzers/notion/scopes.json _build/src/github.com/trufflesecurity/trufflehog/pkg/analyzer/analyzers/notion/scopes.json
+	cp pkg/analyzer/analyzers/opsgenie/scopes.json _build/src/github.com/trufflesecurity/trufflehog/pkg/analyzer/analyzers/opsgenie/scopes.json
+	cp pkg/analyzer/analyzers/dropbox/scopes.json _build/src/github.com/trufflesecurity/trufflehog/pkg/analyzer/analyzers/dropbox/scopes.json
+	cp pkg/analyzer/analyzers/datadog/scopes.json _build/src/github.com/trufflesecurity/trufflehog/pkg/analyzer/analyzers/datadog/scopes.json
+	cp pkg/analyzer/analyzers/posthog/scopes.json _build/src/github.com/trufflesecurity/trufflehog/pkg/analyzer/analyzers/posthog/scopes.json
+	cp pkg/analyzer/analyzers/shopify/scopes.json _build/src/github.com/trufflesecurity/trufflehog/pkg/analyzer/analyzers/shopify/scopes.json
+	cp pkg/analyzer/analyzers/planetscale/scopes.json _build/src/github.com/trufflesecurity/trufflehog/pkg/analyzer/analyzers/planetscale/scopes.json
+	cp pkg/analyzer/analyzers/digitalocean/scopes.json _build/src/github.com/trufflesecurity/trufflehog/pkg/analyzer/analyzers/digitalocean/scopes.json
+	cp pkg/analyzer/analyzers/figma/endpoints.json _build/src/github.com/trufflesecurity/trufflehog/pkg/analyzer/analyzers/figma/endpoints.json
+	cp pkg/analyzer/analyzers/monday/query.graphql _build/src/github.com/trufflesecurity/trufflehog/pkg/analyzer/analyzers/monday/query.graphql
+	cp pkg/analyzer/analyzers/mux/tests.json _build/src/github.com/trufflesecurity/trufflehog/pkg/analyzer/analyzers/mux/tests.json
+	cp pkg/detectors/fp_badlist.txt _build/src/github.com/trufflesecurity/trufflehog/pkg/detectors/fp_badlist.txt
+	cp pkg/analyzer/analyzers/stripe/restricted.yaml _build/src/github.com/trufflesecurity/trufflehog/pkg/analyzer/analyzers/stripe/restricted.yaml
+	cp pkg/detectors/fp_programmingbooks.txt _build/src/github.com/trufflesecurity/trufflehog/pkg/detectors/fp_programmingbooks.txt
+	cp pkg/detectors/fp_uuids.txt _build/src/github.com/trufflesecurity/trufflehog/pkg/detectors/fp_uuids.txt
+	cp pkg/detectors/fp_words.txt _build/src/github.com/trufflesecurity/trufflehog/pkg/detectors/fp_words.txt
+	cp pkg/detectors/privatekey/list.txt _build/src/github.com/trufflesecurity/trufflehog/pkg/detectors/privatekey/list.txt
+
+override_dh_auto_build:
+	cd _build/src/github.com/trufflesecurity/trufflehog/ && go install -trimpath -v -p 16
+
+override_dh_auto_install:
+	dh_auto_install -- --no-source
+
+override_dh_auto_test:
+	# do not run tests

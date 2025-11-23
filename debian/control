@@ -1,16 +1,18 @@
 Source: trufflehog
 Section: misc
 Priority: optional
-Maintainer: Lorenzo "Palinuro" Faletra <palinuro@parrotsec.org>
+Maintainer: Parrot Dev Team <team@parrotsec.org>
 Uploaders: Lorenzo "Palinuro" Faletra <palinuro@parrotsec.org>
-Build-Depends: debhelper-compat (= 13), dh-python, python3-setuptools, python3-all
-Standards-Version: 4.6.0
+Build-Depends: debhelper-compat (= 13),
+               dh-golang,
+               golang-any,
+Standards-Version: 4.6.2
 Homepage: https://github.com/trufflesecurity/truffleHog
-Rules-Requires-Root: no
+XS-Go-Import-Path: github.com/trufflesecurity/trufflehog
 
 Package: trufflehog
-Architecture: all
-Depends: ${python3:Depends}, ${misc:Depends}, python3-trufflehogregexes
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Searches through git repositories for secrets
  This package contains a utitlity to search through git repositories for
  secrets, digging deep into commit history and branches. This is effective at
