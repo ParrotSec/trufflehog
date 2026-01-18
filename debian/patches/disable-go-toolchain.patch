@@ -1,0 +1,17 @@
+Description: disable go toolchain
+Author: Lorenzo "Palinuro" Faletra <palinuro@parrotsec.org>
+Last-Update: 2026-01-18
+
+--- trufflehog-3.92.5.orig/go.mod
++++ trufflehog-3.92.5/go.mod
+@@ -1,8 +1,8 @@
+ module github.com/trufflesecurity/trufflehog/v3
+ 
+-go 1.24.0
++//go 1.24.0
+ 
+-toolchain go1.24.5
++//toolchain go1.24.5
+ 
+ replace github.com/jpillora/overseer => github.com/trufflesecurity/overseer v1.2.8
+ 

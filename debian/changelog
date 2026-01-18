@@ -1,3 +1,9 @@
+trufflehog (3.92.5-0parrot2) echo; urgency=medium
+
+  * Disable go toolchain specification
+
+ -- Lorenzo "Palinuro" Faletra <palinuro@parrotsec.org>  Sun, 18 Jan 2026 05:17:09 +0100
+
 trufflehog (3.92.5-0parrot1) echo; urgency=medium
 
   * Import new upstream release
